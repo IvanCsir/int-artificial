@@ -2,23 +2,48 @@ import numpy as np
 from sklearn.utils import shuffle
 import random
 
-class Matriz:
+class Matriz():
 
-    matriz2 = 0
-    def crear_matriz(n,m,amount_mix):
-        amount_elements = n*m
-        list_elements = []
+    def crear_matriz(self,n,m):
+        a = 0
+        objective_matrix = []
 
-        for i in range(amount_elements):
-            list_elements.append(i)
-        print(list_elements)
-
-        for i in range(amount_mix):
-            random.shuffle(list_elements)
-        print(list_elements)
+        """ #Matrix without numpy """
+        # for fil in range(n):
+        #     objective_matrix.append([])
+        #     for col in range(m):
+        #         a+=1
+        #         objective_matrix[fil].append(a)
+        
+        # objective_matrix[fil-1][col-1]=0
 
         """ #Matrix with numpy """
-        matriz = np.zeros((n,m))
+        objective_matrix = np.zeros((n,m),int)
+        for fil in range(n):
+            for col in range(m):
+                a += 1
+                objective_matrix[fil][col] = a
+        
+        objective_matrix[fil][col] = 0
+                
+        print(f"Objective matrix: \n{objective_matrix}")
+        return objective_matrix
+
+       
+
+
+    def mix_matrix(self,n,m,amount_mix):
+        amount_elements = n*m
+        list_elements = []
+        a = 0
+        for i in range(amount_elements):
+            list_elements.append(a)
+            a += 1
+        for i in range(amount_mix):
+            random.shuffle(list_elements)
+
+        """ #Matrix with numpy """
+        matriz = np.zeros((n,m),int)
         a = 0
         for fil in range(n):
             for col in range(m):
@@ -33,25 +58,5 @@ class Matriz:
         #     for col in range(m):
         #         matriz[fil].append(list_elements[a])
         #         a+=1
-        print(matriz)
-    
+        print(f"Mixed matrix: \n{matriz}")         
         return matriz
-        
-        
-
-
-        
-        # global matriz2
-        # matriz2 = matriz
-        # return matriz
-        
-
-    def mezclar_matriz():
-        # global matriz2
-        # sample = int(input("How many time do you like to shuffle the matrix?: "))
-        # for i in range(sample):
-        #     random.shuffle(matriz)
-        # print(matriz)
-        # print(matriz2)
-        pass
-

@@ -35,8 +35,7 @@ class Random_search():
             else:
                  mixed_matrix[0][1], mixed_matrix[0][2] = mixed_matrix[0][2],  mixed_matrix[0][1]
         
-        # Position 01 
-
+        # Position 02
         elif mixed_matrix[0][2] == 0:
             possible_movements = [0,1]
             mov = random.choice(possible_movements)

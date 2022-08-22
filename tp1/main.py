@@ -13,9 +13,8 @@ def main():
     mixed_matrix = Matriz().mix_matrix(n,m,amount_mix)
     zero_position = Random_search().random_search(n,m,mixed_matrix)
     Random_search().compare_matrix(mixed_matrix, objective_matrix)
-    print("This time is being calculated")
     end = time.process_time()
-    print(end - start)
+    print(f"\nThis programme took {end-start} seconds ")
 
 
 

@@ -51,12 +51,12 @@ class Matriz():
         #         a += 1
         
         """ Matriz without numpy """
-        matriz = [[1,2,3],[4,5,6],[7,0,8]]
-        # a=0
-        # for fil in range(n):
-        #     matriz.append([])
-        #     for col in range(m):
-        #         matriz[fil].append(list_elements[a])
-        #         a+=1
+        matriz = []
+        a=0
+        for fil in range(n):
+            matriz.append([])
+            for col in range(m):
+                matriz[fil].append(list_elements[a])
+                a+=1
         print(f"Mixed matrix: \n{matriz}")         
         return matriz

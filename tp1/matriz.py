@@ -1,6 +1,6 @@
 import numpy as np
-from sklearn.utils import shuffle
 import random
+from random_search import *
 
 class Matriz():
 
@@ -16,47 +16,17 @@ class Matriz():
                 objective_matrix[fil].append(a)
         
         objective_matrix[-1][-1]=0
-
-        """ #Matrix with numpy """
-        # objective_matrix = np.zeros((n,m),int)
-        # for fil in range(n):
-        #     for col in range(m):
-        #         a += 1
-        #         objective_matrix[fil][col] = a
-        
-        # objective_matrix[-1][-1] = 0
                 
         print(f"Objective matrix: \n{objective_matrix}")
         return objective_matrix
 
-       
+    def mix_matrix(self, row_0, col_0, amount_mix, matrix):
 
-
-    def mix_matrix(self,n,m,amount_mix):
-        amount_elements = n*m
-        list_elements = []
-        a = 0
-        for i in range(amount_elements):
-            list_elements.append(a)
-            a += 1
+        mat = Random_search().possible_movements(matrix, row_0, col_0)
         for i in range(amount_mix):
-            random.shuffle(list_elements)
+            matriz = mat
 
-        """ #Matrix with numpy """
-        # matriz = np.zeros((n,m),int)
-        # a = 0
-        # for fil in range(n):
-        #     for col in range(m):
-        #         matriz[fil][col] = list_elements[a]
-        #         a += 1
+        print("ACAAAAAAAAAAAA")
+        print(matriz)
         
-        """ Matriz without numpy """
-        matriz = []
-        a=0
-        for fil in range(n):
-            matriz.append([])
-            for col in range(m):
-                matriz[fil].append(list_elements[a])
-                a+=1
-        print(f"Mixed matrix: \n{matriz}")         
         return matriz

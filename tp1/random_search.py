@@ -1,124 +1,50 @@
 import random
+from shutil import move
 from turtle import pos
 from matriz import *
 import time
 
 class Random_search():
     
-    def random_search(self,n,m,mixed_matrix):
+    def find_zero(self,matrix):
 
-        for row in range(n):
-            for col in range(m):
-                if mixed_matrix[row][col] == 0:
+        for row in range(len(matrix)):
+            for col in range(len(matrix[0])):
+                if matrix[row][col] == 0:
                     print("Zero is in row {} col {}".format(row,col))
         return row, col
 
-    def possible_movements(self,mixed_matrix):
-        # ROW 1
-        # Position 00
-        if mixed_matrix[0][0] == 0:
-            possible_movements = [0,1]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[0][0], mixed_matrix[0][1] = mixed_matrix[0][1],  mixed_matrix[0][0]
-            else:
-                mixed_matrix[0][0], mixed_matrix[1][0] = mixed_matrix[1][0], mixed_matrix[0][0]
-
-        # Position 01 
-        elif mixed_matrix[0][1] == 0:
-            possible_movements = [0,1,2]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[0][1],mixed_matrix[0][0] = mixed_matrix[0][0], mixed_matrix[0][1]
-            elif mov == 1:
-                 mixed_matrix[0][1], mixed_matrix[1][1] = mixed_matrix[1][1],mixed_matrix[0][1]
-            else:
-                 mixed_matrix[0][1], mixed_matrix[0][2] = mixed_matrix[0][2],  mixed_matrix[0][1]
+    def possible_movements(self,matrix, row_0, col_0):
         
-        # Position 02
-        elif mixed_matrix[0][2] == 0:
-            possible_movements = [0,1]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[0][2], mixed_matrix[0][1] = mixed_matrix[0][1],  mixed_matrix[0][2]
-            else:
-                mixed_matrix[0][2], mixed_matrix[1][2] = mixed_matrix[1][2],mixed_matrix[0][2]
+        list_movements = []
+        if (row_0+1) <= len(matrix):
+            list_movements.append(((row_0+1),col_0))
 
-        #ROW 1
-        # Position 10 
-        elif mixed_matrix[1][0] == 0:
-            possible_movements = [0,1,2]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[1][0],mixed_matrix[0][0] = mixed_matrix[0][0], mixed_matrix[1][0]
-            elif mov == 1:
-                mixed_matrix[1][0], mixed_matrix[1][1] = mixed_matrix[1][1],  mixed_matrix[1][0]
-            else: 
-                mixed_matrix[1][0],mixed_matrix[2][0] = mixed_matrix[2][0],  mixed_matrix[1][0]
+        if (row_0-1) >= 0:
+            list_movements.append(((row_0-1),col_0))
 
-        # Position 11
-        elif mixed_matrix[1][1] == 0:
-            possible_movements = [0,1,2,3]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[1][1], mixed_matrix[0][1] = mixed_matrix[0][1],mixed_matrix[1][1]
-            elif mov == 1:
-                mixed_matrix[1][1], mixed_matrix[1][2] = mixed_matrix[1][2], mixed_matrix[1][1]
-            elif mov == 2:
-                mixed_matrix[1][1], mixed_matrix[2][1] = mixed_matrix[2][1],  mixed_matrix[1][1]
-            else:
-                mixed_matrix[1][1], mixed_matrix[1][0] = mixed_matrix[1][0],  mixed_matrix[1][1]
-
-        # Position 12
-        elif mixed_matrix[1][2] == 0:
-            possible_movements = [0,1,2]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[1][2], mixed_matrix[0][2] = mixed_matrix[0][2],  mixed_matrix[1][2]
-            elif mov == 1:
-                mixed_matrix[1][2], mixed_matrix[2][2] = mixed_matrix[2][2],  mixed_matrix[1][2]
-            else: 
-                mixed_matrix[1][2], mixed_matrix[1][1] = mixed_matrix[1][1], mixed_matrix[1][2]
-        
-        #ROW 2
-        # Position 20
-        elif mixed_matrix[2][0] == 0:
-            possible_movements = [0,1]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[2][0], mixed_matrix[1][0] = mixed_matrix[1][0], mixed_matrix[2][0]
-            else:
-                mixed_matrix[2][0], mixed_matrix[2][1] = mixed_matrix[2][1], mixed_matrix[2][0]
+        if (col_0-1) >= 0:
+            list_movements.append((row_0,(col_0-1)))
             
-        # Position 21
-        elif mixed_matrix[2][1] == 0:
-            
-            possible_movements = [0,1,2]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[2][1], mixed_matrix[1][1] = mixed_matrix[1][1], mixed_matrix[2][1]
-            elif mov == 1:
-                mixed_matrix[2][1], mixed_matrix[2][2] = mixed_matrix[2][2],  mixed_matrix[2][1]
-            else:
-                mixed_matrix[2][1], mixed_matrix[2][0] = mixed_matrix[2][0],  mixed_matrix[2][1]
+        if (col_0+1) <= len(matrix[0]):
+            list_movements.append((row_0,(col_0+1)))
         
-        # Position 22
-        elif mixed_matrix[2][2] == 0:
-            possible_movements = [0,1]
-            mov = random.choice(possible_movements)
-            if mov == 0:
-                mixed_matrix[2][2], mixed_matrix[1][2] = mixed_matrix[1][2],  mixed_matrix[2][2]
-            else:
-                mixed_matrix[2][2], mixed_matrix[2][1] = mixed_matrix[2][1],  mixed_matrix[2][2]
+        movement = random.choice(list_movements)
+        row = movement[0]
+        col = movement[1]
+       
+        matrix[row_0][col_0], matrix[row][col] = matrix[row][col],  matrix[row_0][col_0]
+        print(matrix)
 
-        return mixed_matrix
+        return matrix
+    
 
-    def compare_matrix(self, mixed_matrix, objective_matrix):
+
+    def find_solution(self,objective_matrix, mixed_matrix):
         a = 0
-        mixed_matrix = Random_search().possible_movements(mixed_matrix)
+        new_row, new_column = Random_search().find_zero(mixed_matrix)
         while mixed_matrix != objective_matrix:
-            mixed_matrix = Random_search().possible_movements(mixed_matrix)
-            print(mixed_matrix)
+            Random_search().possible_movements(mixed_matrix, new_row, new_column)
             a += 1
             if mixed_matrix == objective_matrix:
                 print(f"Objective matrix founded in {a} movements")

@@ -17,16 +17,11 @@ class Matriz():
         
         objective_matrix[-1][-1]=0
                 
-        print(f"Objective matrix: \n{objective_matrix}")
         return objective_matrix
 
-    def mix_matrix(self, row_0, col_0, amount_mix, matrix):
+    def mix_matrix(self, amount_mix, matrix):
 
-        mat = Random_search().possible_movements(matrix, row_0, col_0)
         for i in range(amount_mix):
-            matriz = mat
+            matriz = Random_search().possible_movements(matrix)     
 
-        print("ACAAAAAAAAAAAA")
-        print(matriz)
-        
         return matriz

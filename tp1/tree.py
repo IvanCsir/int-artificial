@@ -1,10 +1,4 @@
-from copy import deepcopy
-from turtle import position
-import copy
-
-
-from busqueda_anchura import Busqueda_anchura
-
+from busqueda_anchura import *
 class TreeNode():
     def __init__(self, matrix):
         self.matrix = matrix

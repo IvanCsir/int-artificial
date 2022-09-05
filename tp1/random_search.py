@@ -1,6 +1,4 @@
 import random
-from shutil import move
-from turtle import pos
 from matriz import *
 
 class Random_search():

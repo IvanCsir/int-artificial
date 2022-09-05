@@ -1,5 +1,4 @@
 from random import Random
-import numpy as np1
 from matriz import *
 from random_search import *
 from busqueda_anchura import *

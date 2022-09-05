@@ -36,10 +36,11 @@ class Busqueda_anchura():
        
         return list_movements
 
-    def do_movement(self, matrix,row_0, col_0, new_row, new_col):
+    def do_movement(self, matrix, new_row, new_col):
+        row_0, col_0 = self.find_zero(matrix)
         matrix[row_0][col_0], matrix[new_row][new_col] = matrix[new_row][new_col],  matrix[row_0][col_0]
         return matrix
 
 
     def busqueda_anchura(self,matrix):
-        self.possible_movements(matrix)
+        pass

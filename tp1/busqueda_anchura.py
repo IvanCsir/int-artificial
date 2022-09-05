@@ -1,6 +1,10 @@
 from tree import TreeNode
+import copy
+
 
 class Busqueda_anchura():
+    
+    objective_matrix = [[1,2,3],[4,5,6],[7,8,0]]
     
     def find_zero(self,matrix):
         
@@ -19,23 +23,23 @@ class Busqueda_anchura():
 
         list_movements = []
         if (row_0+1) < len(matrix):
-            list_movements.append(((row_0+1),col_0))
+            list_movements.append([row_0+1,col_0])
 
         if (row_0-1) >= 0:
-            list_movements.append(((row_0-1),col_0))
+            list_movements.append([row_0-1,col_0])
 
         if (col_0-1) >= 0:
-            list_movements.append((row_0,(col_0-1)))
+            list_movements.append([row_0,col_0-1])
             
         if (col_0+1) < len(matrix[0]):
-            list_movements.append((row_0,(col_0+1)))
-        
-        for i in len(list_movements):
-            movement = random.choice(list_movements)
-            row = movement[0]
-            col = movement[1]
+            list_movements.append([row_0,col_0+1])
        
-        matrix[row_0][col_0], matrix[row][col] = matrix[row][col],  matrix[row_0][col_0]
+        return list_movements
+
+    def do_movement(self, matrix,row_0, col_0, new_row, new_col):
+        matrix[row_0][col_0], matrix[new_row][new_col] = matrix[new_row][new_col],  matrix[row_0][col_0]
         return matrix
+
+
     def busqueda_anchura(self,matrix):
-        pass
+        self.possible_movements(matrix)

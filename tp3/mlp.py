@@ -15,7 +15,6 @@ class Multi_layer_perceptron():
                          [1, 1, 0]]
     def neuron_1(self):
         
-
         w0 = 0.9
         w1 = 0.7
         w2 = 0.5

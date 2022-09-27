@@ -7,16 +7,28 @@ def main():
                 [0, 1, 1],
                 [1, 0, 1],
                 [1, 1, 0]]
-
+    w0 = 0.9
+    w1 = 0.7
+    w2 = 0.5
+    w3 = 0.3
+    w4 = -0.9
+    w5 = -1
+    w6 = 0.8
+    w7 = 0.35
+    w8 = 0.1
+    w9 = -0.23
+    w10 = -0.79
+    w11 = 0.56
+    w12 = 0.6
         
     while iteracion < 1000:
         iteracion += 1
         print(f"Iteracion nro-------------------------------------------: {iteracion}")
         for i in xor_table:
-            SR1, w0, w1, w2 = Multi_layer_perceptron(i[0],i[1]).neuron_1()
-            SR2,w3, w4, w5 = Multi_layer_perceptron(i[0],i[1]).neuron_2()
-            SR3, w6, w7, w8 = Multi_layer_perceptron(i[0],i[1]).neuron_3()
-            SR4, df = Multi_layer_perceptron(SR1,SR2).neuron_4(SR3)
+            SR1 = Multi_layer_perceptron(i[0],i[1]).neuron_1(w0,w1,w2)
+            SR2 = Multi_layer_perceptron(i[0],i[1]).neuron_2(w3,w4,w5)
+            SR3 = Multi_layer_perceptron(i[0],i[1]).neuron_3(w6,w7,w8)
+            SR4, df = Multi_layer_perceptron(SR1,SR2).neuron_4(SR3,w9,w10,w11,w12)
 
             print("----Hidden Neuron 1 - Back forward----")
             s_0c1 = SR1 * (1 - (SR1)) * df

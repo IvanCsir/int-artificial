@@ -11,7 +11,7 @@ class Multi_layer_perceptron():
                          [0, 1, 1],
                          [1, 0, 1],
                          [1, 1, 0]]
-    def neuron_1(self):
+    def neuron_1(self,w0, w1, w2):
         
         w0 = 0.9
         w1 = 0.7
@@ -43,10 +43,8 @@ class Multi_layer_perceptron():
         # print(f"Error: {error} \n")
         return SR, w0, w1, w2
 
-    def neuron_2(self):
-        w3 = 0.3
-        w4 = -0.9
-        w5 = -1
+    def neuron_2(self, w3, w4, w5):
+        
         x = (1*w3 + self.e1*w4 + self.e2*w5)
         SR = 1/(1+(math.e)**(-x))
         # error = self.xor_table[0][2] - SR
@@ -66,12 +64,10 @@ class Multi_layer_perceptron():
         # print(f"W5: {w5}")
         print(f"SR: {SR}")
         # print(f"Error: {error} \n")
-        return SR, w3, w4, w5
+        return SR
     
-    def neuron_3(self):
-        w6 = 0.8
-        w7 = 0.35
-        w8 = 0.1
+    def neuron_3(self, w6, w7, w8):
+
         x = (1*w6 + self.e1*w7 + self.e2*w8)
         SR = 1/(1+(math.e)**(-x))
         # error = self.xor_table[0][2] - SR
@@ -92,15 +88,11 @@ class Multi_layer_perceptron():
         # print(f"W8: {w8}")
         print(f"SR: {SR}")
         # print(f"Error: {error} \n")
-        return SR, w6, w7, w8
+        return SR
     
-    def neuron_4(self,e3):
+    def neuron_4(self,e3, w9,w10,w11,w12):
         self.e3 = e3
-        w9 = -0.23
-        w10 = -0.79
-        w11 = 0.56
-        w12 = 0.6
-        x = (1*w9 + self.e1*w10 + self.e2*w11 + self.e3*w12)
+        x = (float(1*w9) + self.e1*w10 + self.e2*w11 + self.e3*w12)
         
         SR = 1/(1+(math.e)**(-x))
         error = self.xor_table[0][2] - SR

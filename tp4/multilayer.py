@@ -9,7 +9,7 @@ class Multi_layer_perceptron():
         self.w2 = w2
         self.LR = 0.5
 
-    def caculate(self):
+    def calculate(self):
         x = (1*self.w0 + self.e1*self.w1 + self.e2*self.w2)
         SR = 1/(1+(math.e)**(-x))
         print(SR)

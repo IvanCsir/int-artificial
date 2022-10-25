@@ -1,16 +1,16 @@
 import math
-class Multi_layer_perceptron():
+class Neuron():
 
-    def __init__(self,e1, e2, w0, w1, w2):
-        self.e1 = e1
-        self.e2 = e2
-        self.w0 = w0
-        self.w1 = w1
-        self.w2 = w2
-        self.LR = 0.5
+    def __init__(self):
+        self.pesos = []
+        self.entradas = []
+        self.salida = float
 
     def calculate(self):
-        x = (1*self.w0 + self.e1*self.w1 + self.e2*self.w2)
+        x = float()
+        for i in range(len(self.entradas)):
+            x = x + float(self.entradas[i]*self.pesos[i])
         SR = 1/(1+(math.e)**(-x))
         print(SR)
         return SR
+    

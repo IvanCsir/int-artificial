@@ -4,7 +4,7 @@ class Neuron():
     def __init__(self):
         self.pesos = []
         self.entradas = []
-        self.salida = float
+        self.salida = float(0)
 
     def calculate(self):
         x = float()

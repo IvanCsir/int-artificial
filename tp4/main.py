@@ -11,7 +11,8 @@ def main():
     number_pesos = int(number_neurons*3)
     list_pesos = []
         
-    for i in range(number_pesos):
+    for i in number_pesos:
+        
         peso = random.uniform(-1,1)
         list_pesos.append(peso)
 

@@ -8,14 +8,16 @@ def main():
                  [1,1,1, 0]]
                 
     number_neurons = int(input("How many neurons do you want in the hidden layer?: "))
+    iterations = int(input("How many iterations do you have?: "))
     number_pesos = int(number_neurons*3)
     list_pesos = []
     list_neurons = []
     list_entries = []
 
-
-    for i in number_neurons:
-        for j in xor_table:
+    contador = 0
+    while contador <= iterations:
+        contador += 1
+        for i in xor_table:
             peso = random.uniform(-1,1)
             list_pesos.append(peso)
             list_entries.append(j[0])

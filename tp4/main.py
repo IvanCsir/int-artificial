@@ -13,6 +13,7 @@ def main():
     list_pesos = []
     list_neurons = []
     list_outputs = []
+    new_pesos = []
     inicio = 0
     final = 3
     for i in range(number_pesos):
@@ -29,9 +30,12 @@ def main():
                 neuron.entradas.append(i[0])
                 neuron.entradas.append(i[1])
                 neuron.entradas.append(i[2])           
-                neuron.list_pesos = list_pesos    
-                sr = neuron.calculate()
-                list_outputs.append(sr)
+                neuron.list_pesos = list_pesos
+                SR = neuron.calculate()
+                neuron.salida = SR
+                list_outputs.append(SR)
+            final_neuron = Neuron()
+            neuron.final_neuron(i)
     print(list_outputs)
     print(len(list_outputs))
 

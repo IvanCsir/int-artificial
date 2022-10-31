@@ -63,24 +63,17 @@ def main():
             # print("----Hidden Neuron 1 - Back forward----")
             s_0c1 = SR1 * (1 - (SR1)) * df
             delta_w0_0c1 = LR * 1 * s_0c1
-            # print(f"s_0c1:{s_0c1}")
-            # print(f"delta_0c1:{delta_w0_0c1}")
-            # print(f"w0: {w0}") 
             w0 = delta_w0_0c1 + w0
             
             w0 = w0
             w0_list.append(w0)
 
             delta_w1_0c1 = LR * i[0] * s_0c1
-            # print(f"delta_w1_0c1:{delta_w1_0c1}")
-            # print(f"w1: {w1}")
             w1 = delta_w1_0c1 + w1
             w1 = w1
             w1_list.append(w1)
 
             delta_w2_0c1 = LR * i[1] * s_0c1
-            # print(f"delta_w2_0c1:{delta_w2_0c1}")
-            # print(f"w2: {w2}\n")
             w2 = delta_w2_0c1 + w2
             w2 = w2
             w2_list.append(w2)
@@ -88,23 +81,16 @@ def main():
             # print("----Hidden Neuron 2 - Back forward----")
             s_0c2 = SR2 * (1 - (SR2)) * df
             delta_w3_0c2 = LR * 1 * s_0c2
-            # print(f"s_0c2:{s_0c2}")
-            # print(f"delta_0c2:{delta_w3_0c2}")
-            # print(f"w3: {w3}")
             w3 = delta_w3_0c2 + w3
             w3 = w3
             w3_list.append(w3)
 
             delta_w4_0c2 = LR * i[0] * s_0c2
-            # print(f"delta_w4_0c2:{delta_w4_0c2}")
-            # print(f"w4: {w4}")
             w4 = delta_w4_0c2 + w4
             w4 = w4
             w4_list.append(w4)
 
             delta_w5_0c2 = LR * i[1] * s_0c2
-            # print(f"delta_w5_0c2:{delta_w5_0c2}")
-            # print(f"w5: {w5}\n")
             w5 = delta_w5_0c2 + w5
             w5 = w5
             w5_list.append(w5)
@@ -112,24 +98,17 @@ def main():
             # print("----Hidden Neuron 3 - Back forward----")
             s_0c3 = SR3 * (1 - (SR3)) * df
             delta_w6_0c3 = LR * 1 * s_0c3
-            # print(f"s_0c3:{s_0c3}")
-            # print(f"delta_0c3:{delta_w6_0c3}")
-            # print(f"w6: {w6}")
             w6 = delta_w6_0c3 + w6
             w6 = w6
             w6_list.append(w6)
 
             delta_w7_0c3 = LR * i[0] * s_0c3
             w7 = delta_w7_0c3 + w7
-            # print(f"delta_w7_0c3:{delta_w7_0c3}")
-            # print(f"w7: {w7}")
             w7 = w7
             w7_list.append(w7)
 
             delta_w8_0c3 = LR * i[1] * s_0c3
             w8 = delta_w8_0c3 + w8
-            # print(f"delta_w8_0c3:{delta_w8_0c3}")
-            # print(f"w8: {w8}")
             w8 = w8
             w9 = w9
             w10 = w10

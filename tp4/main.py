@@ -19,7 +19,7 @@ def main():
             peso = random.uniform(-1,1)
             list_pesos.append(peso)
     contador = 0
-    while contador <= iterations:
+    while contador != iterations:
         contador += 1
         for i in xor_table:
             for j in range(number_neurons):
@@ -28,8 +28,8 @@ def main():
                 neuron = Neuron()
                 neuron.entradas.append(i[0])
                 neuron.entradas.append(i[1])
-                neuron.entradas.append(i[2])         
-                neuron.pesos.append(list_pesos)       
+                neuron.entradas.append(i[2])           
+                neuron.list_pesos = list_pesos    
                 sr = neuron.calculate()
                 list_outputs.append(sr)
     print(list_outputs)

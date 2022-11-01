@@ -3,7 +3,7 @@ class Neuron():
 
     def __init__(self):
         self.entradas = []
-        self.list_pesos = list
+        self.list_pesos = []
         self.salida = 0
         self.LR = 0.1
 
@@ -22,9 +22,9 @@ class Neuron():
         error = row[3] - SR
         epsilon = SR*(1-(SR))*error
 
-        for i in range(len(self.entradas)+1):
+        for i in range(len(self.entradas)):
             gen_delta = self.LR*self.entradas[i]
-            self.list_pesos[i] = self.list[i] + gen_delta
+            self.list_pesos[i] = self.list_pesos[i] + gen_delta
 
         return SR, epsilon
     

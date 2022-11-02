@@ -14,7 +14,8 @@ class Neuron():
         SR = 1/(1+(math.e)**(-x))
         return SR
     
-    def final_neuron(self,row):
+    def calculate_final_neuron(self,row):
+        lista_pesos_fn = []
         x = float()
         for i in range(len(self.entradas)):
             x = x + float(self.entradas[i]*self.list_pesos[i])
@@ -24,15 +25,19 @@ class Neuron():
 
         for i in range(len(self.entradas)):
             gen_delta = self.LR*self.entradas[i]
-            self.list_pesos[i] = self.list_pesos[i] + gen_delta
+            w_gen = self.list_pesos[i] + gen_delta
+            lista_pesos_fn.append(w_gen)
 
-        return SR, epsilon
+        return SR, epsilon, lista_pesos_fn
     
     def calculate_pesos(self, df):
-        for i in range(self.list_pesos):
+        lista_pesos_nuevos = []
+        for i in range(len(self.list_pesos)):
                 gen_soc = self.salida * (1 - (self.salida)) * df
                 delta_gen_soc = self.LR * self.entradas[i] * gen_soc
-                self.list_pesos[i] = delta_gen_soc + self.list_pesos[i]
+                peso = delta_gen_soc + self.list_pesos[i]
+                lista_pesos_nuevos.append(peso)
+        return lista_pesos_nuevos
         
 
                 

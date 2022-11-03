@@ -16,6 +16,7 @@ def main():
     list_outputs = [1]
     new_pesos = []
     lista_pesos_ultima_neurona = []
+    lista_SR_final_neuron = []
     
     for i in range(number_neurons+1):
         peso = random.uniform(-1,1)
@@ -47,6 +48,7 @@ def main():
                 SR = neuron.calculate()
                 neuron.salida = SR
                 list_outputs.append(SR)
+                list_neurons.append(neuron)
 
             final_neuron = Neuron()
             for x in range(len(list_outputs)):
@@ -54,16 +56,22 @@ def main():
                 final_neuron.list_pesos.append(lista_pesos_ultima_neurona[x])
         
             SR_final, epsilon, new_final_pesos = final_neuron.calculate_final_neuron(i)
+            lista_SR_final_neuron.append(SR_final)
             list_outputs.clear()
-            new_pesos = neuron.calculate_pesos(epsilon)
-            list_pesos_local.clear()
+
+            for neuron in list_neurons:
+                new_peso = neuron.calculate_pesos(epsilon)
+                for valor in new_peso:
+                    new_pesos.append(valor)
+
+            
             list_pesos_local = new_pesos
             lista_pesos_ultima_neurona.clear()
             lista_pesos_ultima_neurona = new_final_pesos
-            
+            list_neurons.clear()
 
-    print(list_outputs)
-    print(len(list_outputs))
+    print(lista_SR_final_neuron[-1])
+    
 
 
 

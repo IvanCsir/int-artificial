@@ -24,7 +24,7 @@ class Neuron():
         epsilon = SR*(1-(SR))*error
 
         for i in range(len(self.entradas)):
-            gen_delta = self.LR*self.entradas[i]
+            gen_delta = self.LR*self.entradas[i]*epsilon
             w_gen = self.list_pesos[i] + gen_delta
             lista_pesos_fn.append(w_gen)
 

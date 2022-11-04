@@ -5,7 +5,7 @@ class Neuron():
         self.entradas = []
         self.list_pesos = []
         self.salida = 0
-        self.LR = 0.1
+        self.LR = 0.5
 
     def calculate(self):
         x = float()
@@ -28,7 +28,7 @@ class Neuron():
             w_gen = self.list_pesos[i] + gen_delta
             lista_pesos_fn.append(w_gen)
 
-        return SR, epsilon, lista_pesos_fn
+        return SR, epsilon, lista_pesos_fn, error
     
     def calculate_pesos(self, df):
         lista_pesos_nuevos = []

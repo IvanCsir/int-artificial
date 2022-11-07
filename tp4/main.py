@@ -12,12 +12,10 @@ def main():
     iterations = int(input("How many iterations do you have?: "))
     number_pesos = int(number_neurons*3)
     list_pesos_local = []
-    lista_prueba1 = [0.9,0.7, 0.5,0.3, -0.9,-1,0.8,0.35,0.1]
     list_neurons = []
     list_outputs = [1]
     new_pesos = []
     lista_pesos_ultima_neurona = []
-    lista_prueba2 =  [-0.23,-0.79,0.56, 0.6]
     lista_SR_final_neuron = []
     errors_r1 = []
     errors_r2 = []
@@ -26,12 +24,12 @@ def main():
     list_error_counter = []
     
     for i in range(number_neurons+1):
-        # peso = random.uniform(-1,1)
-        lista_pesos_ultima_neurona.append(lista_prueba2[i]) 
+        peso = random.uniform(-1,1)
+        lista_pesos_ultima_neurona.append(peso) 
 
     for i in range(number_pesos):
-        # peso = random.uniform(-1,1)
-        list_pesos_local.append(lista_prueba1[i])
+        peso = random.uniform(-1,1)
+        list_pesos_local.append(peso)
 
     contador = 0
     while contador != iterations:
@@ -58,8 +56,6 @@ def main():
                 list_neurons.append(neuron)
 
             final_neuron = Neuron()
-            # final_neuron.entradas = list_outputs
-            # final_neuron.list_pesos = lista_pesos_ultima_neurona
             for x in range(len(list_outputs)):
                 final_neuron.entradas.append(list_outputs[x])
                 final_neuron.list_pesos.append(lista_pesos_ultima_neurona[x])
@@ -77,6 +73,7 @@ def main():
             lista_SR_final_neuron.append(SR_final)
             print(f"ITERACION {contador} \n FILA {i} \n Salida Real: {SR_final}")
             list_outputs.clear()
+            list_outputs.append(1)
 
             list_pesos_local.clear()
             for neuron in list_neurons:

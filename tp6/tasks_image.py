@@ -5,7 +5,7 @@ def read_images():
         image_px = []
         pixel_list = []
         persona = True
-        images_path = "C:/Users/ivanf/OneDrive/Escritorio/Facultad/4Ano/int-artificial/tp6/fotos1.0/"
+        images_path = "/home/ivan/Escritorio/hdd/Facultad/int-artificial/tp6/fotos1.0/"
         for i in range(10):
             img = cv2.imread(images_path + str(i) + ".jpg", cv2.COLOR_RGB2GRAY)
             pixel_list.clear()

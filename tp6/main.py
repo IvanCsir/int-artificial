@@ -38,13 +38,12 @@ def main():
         list_error_counter.append(contador)
         for i in table:
             a = 0
-            b = 1
-            c = 2
             for j in range(number_neurons):        
                 neuron = Neuron()
                 for entry in range((len(table[0]))-1): #Para saber el nro de entradas
                     neuron.entradas.append(i[entry])           
                     neuron.list_pesos.append(list_pesos_local[entry])
+                    a += 1
 
                 SR = neuron.calculate()
                 neuron.salida = SR
@@ -59,7 +58,8 @@ def main():
             SR_final, epsilon, new_final_pesos, error = final_neuron.calculate_final_neuron(i)
 
             lista_SR_final_neuron.append(SR_final)
-            # print(f"ITERACION {contador} \n FILA {i} \n Salida Real: {SR_final}")
+            if contador == 50:
+                print(f"ITERACION {contador} \n Salida Real: {SR_final}")
             list_outputs.clear()
             list_outputs.append(1)
 
@@ -73,8 +73,6 @@ def main():
             lista_pesos_ultima_neurona.clear()
             lista_pesos_ultima_neurona = new_final_pesos
             list_neurons.clear()
-    print(lista_SR_final_neuron[-1])
-    print(lista_SR_final_neuron[-2])
 
 if __name__ == '__main__':
     main()

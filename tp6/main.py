@@ -7,10 +7,10 @@ from tasks_image import *
 
 def main():
     table = read_images()
-
+    aaa = len(table[0])
     number_neurons = int(input("How many neurons do you want in the hidden layer?: "))
     iterations = int(input("How many iterations do you have?: "))
-    number_pesos = int(len(table[0])*number_neurons)
+    number_pesos = int((len(table[0])-1)*number_neurons)
     list_pesos_local = []
     list_neurons = []
     list_outputs = [1]
@@ -22,13 +22,14 @@ def main():
     errors_r3 = []
     errors_r4 = []
     list_error_counter = []
-    
+
+
     for i in range(number_neurons+1):
-        peso = random.uniform(-1,1)
+        peso = random.uniform(-0.1,0.11)
         lista_pesos_ultima_neurona.append(peso) 
 
     for i in range(number_pesos):
-        peso = random.uniform(-1,1)
+        peso = random.uniform(-0.1,0.1)
         list_pesos_local.append(peso)
 
     contador = 0
@@ -41,14 +42,14 @@ def main():
             c = 2
             for j in range(number_neurons):        
                 neuron = Neuron()
-                for entry in range(number_pesos): #Para saber el nro de entradas
+                for entry in range((len(table[0]))-1): #Para saber el nro de entradas
                     neuron.entradas.append(i[entry])           
                     neuron.list_pesos.append(list_pesos_local[entry])
 
-                    SR = neuron.calculate()
-                    neuron.salida = SR
-                    list_outputs.append(SR)
-                    list_neurons.append(neuron)
+                SR = neuron.calculate()
+                neuron.salida = SR
+                list_outputs.append(SR)
+                list_neurons.append(neuron)
 
             final_neuron = Neuron()
             for x in range(len(list_outputs)):
@@ -58,7 +59,7 @@ def main():
             SR_final, epsilon, new_final_pesos, error = final_neuron.calculate_final_neuron(i)
 
             lista_SR_final_neuron.append(SR_final)
-            print(f"ITERACION {contador} \n FILA {i} \n Salida Real: {SR_final}")
+            # print(f"ITERACION {contador} \n FILA {i} \n Salida Real: {SR_final}")
             list_outputs.clear()
             list_outputs.append(1)
 
@@ -72,7 +73,8 @@ def main():
             lista_pesos_ultima_neurona.clear()
             lista_pesos_ultima_neurona = new_final_pesos
             list_neurons.clear()
-
+    print(lista_SR_final_neuron[-1])
+    print(lista_SR_final_neuron[-2])
 
 if __name__ == '__main__':
     main()

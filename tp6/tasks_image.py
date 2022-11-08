@@ -1,5 +1,5 @@
 import cv2
-
+import copy
 
 def read_images():
         image_px = []
@@ -23,5 +23,8 @@ def read_images():
             else:
                 pixel_list.append(1)
                 persona = True
-            image_px.append(pixel_list)
+            image_px.append(copy.deepcopy(pixel_list))
         return image_px
+    
+if __name__ == '__main__':
+    read_images()

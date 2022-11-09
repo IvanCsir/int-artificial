@@ -9,7 +9,7 @@ def main():
                  [1,1,1, 0]]
                 
     number_neurons = int(input("How many neurons do you want in the hidden layer?: "))
-    iterations = int(input("How many iterations do you have?: "))
+    iterations = int(input("How many iterations do you want?: "))
     number_pesos = int(number_neurons*3)
     list_pesos_local = []
     list_neurons = []
@@ -37,19 +37,23 @@ def main():
         list_error_counter.append(contador)
         for i in xor_table:
             a = 0
-            b = 1
-            c = 2
+            # b = 1
+            # c = 2
             for j in range(number_neurons):        
                 neuron = Neuron()
-                neuron.entradas.append(i[0])
-                neuron.entradas.append(i[1])
-                neuron.entradas.append(i[2])           
-                neuron.list_pesos.append(list_pesos_local[a])
-                a += 3
-                neuron.list_pesos.append(list_pesos_local[b])
-                b += 3
-                neuron.list_pesos.append(list_pesos_local[c])
-                c += 3
+                # neuron.entradas.append(i[0])
+                # neuron.entradas.append(i[1])
+                # neuron.entradas.append(i[2])           
+                # neuron.list_pesos.append(list_pesos_local[a])
+                # a += 3
+                # neuron.list_pesos.append(list_pesos_local[b])
+                # b += 3
+                # neuron.list_pesos.append(list_pesos_local[c])
+                # c += 3
+                for entry in range((len(xor_table[0]))-1): #Para saber el nro de entradas
+                    neuron.entradas.append(i[entry])           
+                    neuron.list_pesos.append(list_pesos_local[a])
+                    a += 1
                 SR = neuron.calculate()
                 neuron.salida = SR
                 list_outputs.append(SR)

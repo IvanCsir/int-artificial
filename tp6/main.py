@@ -1,15 +1,14 @@
 import cv2
 from tasks import *
 import random
-from tasks_image import *
+import matplotlib.pyplot as plt
 
 
 
 def main():
-    table = read_images()
-    aaa = len(table[0])
+    table = Task_images.read_images()
     number_neurons = int(input("How many neurons do you want in the hidden layer?: "))
-    iterations = int(input("How many iterations do you have?: "))
+    iterations = int(input("How many iterations do you want?: "))
     number_pesos = int((len(table[0])-1)*number_neurons)
     list_pesos_local = []
     list_neurons = []
@@ -17,32 +16,32 @@ def main():
     new_pesos = []
     lista_pesos_ultima_neurona = []
     lista_SR_final_neuron = []
-    errors_r1 = []
-    errors_r2 = []
-    errors_r3 = []
-    errors_r4 = []
+    lista_errores = [ [] for i in range(len(table))]
     list_error_counter = []
 
 
+
     for i in range(number_neurons+1):
-        peso = random.uniform(-0.1,0.11)
+        peso = random.uniform(-1,1)
         lista_pesos_ultima_neurona.append(peso) 
 
     for i in range(number_pesos):
-        peso = random.uniform(-0.1,0.1)
+        peso = random.uniform(-1,1)
         list_pesos_local.append(peso)
 
     contador = 0
     while contador != iterations:
         contador += 1
+        error_counter = 0
         list_error_counter.append(contador)
+        print(f"-------------------------Iteración: {contador}---------------------")
         for i in table:
             a = 0
             for j in range(number_neurons):        
                 neuron = Neuron()
                 for entry in range((len(table[0]))-1): #Para saber el nro de entradas
                     neuron.entradas.append(i[entry])           
-                    neuron.list_pesos.append(list_pesos_local[entry])
+                    neuron.list_pesos.append(list_pesos_local[a])
                     a += 1
 
                 SR = neuron.calculate()
@@ -54,12 +53,13 @@ def main():
             for x in range(len(list_outputs)):
                 final_neuron.entradas.append(list_outputs[x])
                 final_neuron.list_pesos.append(lista_pesos_ultima_neurona[x])
-        
-            SR_final, epsilon, new_final_pesos, error = final_neuron.calculate_final_neuron(i)
 
+            SR_final, epsilon, new_final_pesos, error = final_neuron.calculate_final_neuron(i)
+            lista_errores[error_counter].append(error)
+            error_counter += 1
+    
             lista_SR_final_neuron.append(SR_final)
-            if contador == 50:
-                print(f"ITERACION {contador} \n Salida Real: {SR_final}")
+            print(f"Salida Real: {SR_final}")
             list_outputs.clear()
             list_outputs.append(1)
 
@@ -73,6 +73,21 @@ def main():
             lista_pesos_ultima_neurona.clear()
             lista_pesos_ultima_neurona = new_final_pesos
             list_neurons.clear()
+    
+    with open('pesos_co.txt', 'w') as f:
+        for peso in list_pesos_local:
+            f.write(str(peso) + "\n")
 
+    with open('pesos_fn.txt', 'w') as f:
+        for peso in lista_pesos_ultima_neurona:
+            f.write(str(peso) + "\n")
+            
+    for i in range(len(lista_errores)):
+        plt.plot(list_error_counter, lista_errores[i], label = f"Error r{i}")
+    
+    plt.title("ERRORES")
+    plt.legend()
+    plt.show()  
+    plt.savefig("grafico_errores.png")
 if __name__ == '__main__':
     main()

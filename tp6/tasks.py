@@ -1,5 +1,6 @@
 import math
 import cv2
+import copy
 
 class Neuron():
 
@@ -22,7 +23,7 @@ class Neuron():
         for i in range(len(self.entradas)):
             x = x + float(self.entradas[i]*self.list_pesos[i])
         SR = 1/(1+(math.e)**(-x))
-        error = row[3] - SR
+        error = row[-1] - SR
         epsilon = SR*(1-(SR))*error
 
         for i in range(len(self.entradas)):
@@ -40,6 +41,36 @@ class Neuron():
                 peso = delta_gen_soc + self.list_pesos[i]
                 lista_pesos_nuevos.append(peso)
         return lista_pesos_nuevos
+
+class Task_images():
+
+    def read_images():
+        image_pixels = []
+        pixel_list = []
+        persona = True
+        path = "C:/Users/ivanf/OneDrive/Escritorio/Facultad/4Ano/int-artificial/tp6/fotos1.0/"
+        for i in range(10):
+            img = cv2.imread( path + str(i) + ".jpg", 0)
+            ret, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY) 
+            pixel_list.clear()
+            pixel_list.append(int(1)) 
+            for j in range(len(img)):
+                for k in range(len(img[j])):
+                    px = img[j][k]
+                    if px == 0:
+                        pixel_list.append(int(0))
+                    else:
+                        pixel_list.append(int(1))    
+            if persona:
+                pixel_list.append(int(0))
+                persona = False
+            else:
+                pixel_list.append(1)
+                persona = True
+            image_pixels.append(copy.deepcopy(pixel_list))
+        return image_pixels
+
+    
 
         
         

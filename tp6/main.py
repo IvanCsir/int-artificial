@@ -88,6 +88,6 @@ def main():
     plt.title("ERRORES")
     plt.legend()
     plt.show()  
-    plt.savefig("grafico_errores.png")
+    plt.savefig("C:/Users/ivanf/OneDrive/Escritorio/Facultad/4Ano/int-artificial/tp6/" + "grafico_errores.png")
 if __name__ == '__main__':
     main()

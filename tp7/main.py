@@ -16,6 +16,7 @@ def main():
     new_pesos = []
     lista_SR_final_neuron = []
     lista_errores = [ [] for i in range(len(table))]
+    lista_salidas_reales = [ [] for i in range(len(table))]
     list_error_counter = []
 
     contador = 0
@@ -45,8 +46,9 @@ def main():
 
             SR_final, epsilon, new_final_pesos, error = final_neuron.calculate_final_neuron(i)
             lista_errores[error_counter].append(error)
+            lista_salidas_reales[error_counter].append(SR_final)
             error_counter += 1
-    
+                
             lista_SR_final_neuron.append(SR_final)
             print(f"Salida Real: {SR_final}")
             list_outputs.clear()
@@ -73,10 +75,19 @@ def main():
             
     for i in range(len(lista_errores)):
         plt.plot(list_error_counter, lista_errores[i], label = f"Error r{i}")
-    
+
     plt.title("ERRORES")
     plt.legend()
     plt.savefig( "C:/Users/ivanf/OneDrive/Escritorio/Facultad/4Ano/int-artificial/tp7/" + "grafico_errores_tp7.jpg")
     plt.show()
+
+    for i in range(len(lista_salidas_reales)):
+        plt.plot(list_error_counter, lista_salidas_reales[i], label = f"Imagen {i}")
+    
+    plt.title("Reconocimiento")
+    plt.legend()
+    plt.savefig( "C:/Users/ivanf/OneDrive/Escritorio/Facultad/4Ano/int-artificial/tp7/" + "grafico_reconocimiento_tp7.jpg")
+    plt.show()
+    
 if __name__ == '__main__':
     main()
